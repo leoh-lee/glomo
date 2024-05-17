@@ -1,3 +1,7 @@
 spring:
   application:
     name: glomo
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: glomo
+    password:
