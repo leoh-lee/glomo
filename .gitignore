@@ -1,11 +1,16 @@
+# 프로젝트 특정 파일들
 HELP.md
 .gradle
 build/
+
+# 예외 설정 제거 또는 명확히 하기
 !gradle/wrapper/gradle-wrapper.jar
+
+# 빌드 디렉토리 무시
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### STS ###
+# STS
 .apt_generated
 .classpath
 .factorypath
@@ -17,7 +22,7 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
-### IntelliJ IDEA ###
+# IntelliJ IDEA
 .idea
 *.iws
 *.iml
@@ -26,12 +31,15 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
-### NetBeans ###
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
 
-### VS Code ###
+# VS Code
 .vscode/
+
+# 환경 파일 무시
+src/main/resources/env.properties
