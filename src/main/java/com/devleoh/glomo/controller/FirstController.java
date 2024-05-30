@@ -38,7 +38,7 @@ public class FirstController {
         return a;
     }
 
-    @GetMapping("/test6")
+    @GetMapping("/test7")
     public String test5() {
         String a = "1";
         a += "2";
