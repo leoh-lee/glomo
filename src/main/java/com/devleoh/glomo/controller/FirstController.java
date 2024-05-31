@@ -37,44 +37,4 @@ public class FirstController {
         a += "3";
         return a;
     }
-
-    @GetMapping("/test13")
-    public String test5() {
-        String a = "1";
-        a += "2";
-        a += "3";
-        return a;
-    }
-
-    @GetMapping("/test17")
-    public String test7() {
-        String a = "1";
-        a += "2";
-        a += "3";
-        return a;
-    }
-
-    @GetMapping("/test20")
-    public String test20() {
-        String a = "1";
-        a += "2";
-        a += "3";
-        return a;
-    }
-
-    @GetMapping("/test21")
-    public String test21() {
-        String a = "1";
-        a += "2";
-        a += "3";
-        return a;
-    }
-
-    @GetMapping("/test22")
-    public String test22() {
-        String a = "1";
-        a += "2";
-        a += "3";
-        return a;
-    }
 }
