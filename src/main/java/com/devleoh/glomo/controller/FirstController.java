@@ -61,4 +61,12 @@ public class FirstController {
         a += "3";
         return a;
     }
+
+    @GetMapping("/test8")
+    public String test8() {
+        String a = "1";
+        a += "2";
+        a += "3";
+        return a;
+    }
 }
