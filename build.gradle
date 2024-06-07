@@ -7,7 +7,8 @@ plugins {
 
 sonar {
 	properties {
-		property "sonar.projectKey", "nimohLee_glomo_AY_yMRogb_WNf9--_QUt"
+		property "sonar.projectKey", "glomo"
+		property "sonar.projectName", "glomo"
 	}
 }
 
