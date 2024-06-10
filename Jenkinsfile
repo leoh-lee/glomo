@@ -1,10 +1,9 @@
-node {
-  stage('SCM') {
-    checkout scm
-  }
-  stage('SonarQube Analysis') {
-    withSonarQubeEnv() {
-      sh "./gradlew sonar"
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            git branch: 'main', url: "https://github.com/nimohlee/glomo"
+        }
     }
-  }
 }
