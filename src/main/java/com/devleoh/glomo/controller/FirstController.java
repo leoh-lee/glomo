@@ -13,4 +13,9 @@ public class FirstController {
         a += "3";
         return a;
     }
+
+    @GetMapping("/rass")
+    public String rass() {
+        return "rass";
+    }
 }
