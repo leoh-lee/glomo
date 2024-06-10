@@ -10,6 +10,9 @@ pipeline {
 
         stage('Build Project') {
             steps {
+                sh 'chmod +x ./gradlew'
+            }
+            steps {
                 sh './gradlew clean build'
             }
         }
