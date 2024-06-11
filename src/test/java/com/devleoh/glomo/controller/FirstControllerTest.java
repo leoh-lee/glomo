@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * 2024/06/11        nimoh       최초 생성
  */
 @SpringBootTest
-class FirstControllerTest {
+public class FirstControllerTest {
 
     @Autowired
     private FirstController firstController;

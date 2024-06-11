@@ -78,6 +78,7 @@ jacocoTestCoverageVerification {
 tasks.register('testCoverage', Test) {
 	group 'verification'
 	description 'Runs the unit tests with coverage'
+	useJUnitPlatform()
 
 	dependsOn('test', 'jacocoTestReport', 'jacocoTestCoverageVerification')
 }
