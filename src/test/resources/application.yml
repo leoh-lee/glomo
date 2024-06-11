@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: test
+  application:
+    name: glomo
+
+logging:
+  level:
+    root: info
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    driver-class-name:
+    url:
+    username:
+    password:
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+---
+spring:
+  config:
+    activate:
+      on-profile: stg
+---
+spring:
+  config:
+    activate:
+      on-profile: prd
