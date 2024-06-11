@@ -6,6 +6,12 @@ build/
 # 예외 설정 제거 또는 명확히 하기
 !gradle/wrapper/gradle-wrapper.jar
 
+# gradle
+gradlew
+gradlew.bat
+.gradle/
+gradle/
+
 # 빌드 디렉토리 무시
 !**/src/main/**/build/
 !**/src/test/**/build/
