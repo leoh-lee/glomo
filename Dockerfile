@@ -4,8 +4,8 @@ CMD ["chmod", "+x", "gradlew"]
 
 CMD ["./gradlew", "clean", "build"]
 
-ARG JAR_FILE=build/libs/*.jar
+ARG JAR_FILE=./build/libs/*-SNAPSHOT.jar
 
-COPY ${JAR_FILE} ./app.jar
+COPY ${JAR_FILE} app.jar
 
-ENTRYPOINT ["nohup", "java", "-jar", "app.jar", "&"]
+ENTRYPOINT ["nohup", "java", "-jar", "/app.jar", "&"]
