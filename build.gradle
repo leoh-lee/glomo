@@ -21,15 +21,16 @@ jacocoTestReport {
 		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
 	}
 
-	afterEvaluate {
-		classDirectories.setFrom {
-			files(classDirectories.files.collect {
-				fileTree(dir: it, excludes: [
-				        // 테스트 커버리지 제외할 목록 추후 추가
-				])
-			})
-		}
-	}
+	// 테스트 커버리지 제외할 목록 추후 추가
+//	afterEvaluate {
+//		classDirectories.setFrom {
+//			files(classDirectories.files.collect {
+//				fileTree(dir: it, excludes: [
+//
+//				])
+//			})
+//		}
+//	}
 }
 
 jacocoTestCoverageVerification {
