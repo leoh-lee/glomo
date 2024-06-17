@@ -12,68 +12,20 @@ jacoco {
 }
 
 jacocoTestReport {
-	dependsOn test
-	mustRunAfter test
+	dependsOn tasks.test
 
 	reports {
 		xml.required = true
+		xml.outputLocation = new File("build/reports/jacoco.xml")
 		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
 		csv.required = false
 	}
 }
 
-jacocoTestCoverageVerification {
-	mustRunAfter jacocoTestReport
-
-	violationRules {
-		rule {
-			element = 'CLASS'
-
-			limit {
-				counter = 'BRANCH'
-				value = 'COVEREDRATIO'
-				minimum = 0.0
-			}
-
-			limit {
-				counter = 'LINE'
-				value = 'COVEREDRATIO'
-				minimum = 0.00
-			}
-
-			limit {
-				counter = 'METHOD'
-				value = 'COVEREDRATIO'
-				minimum = 0.0
-			}
-		}
-
-		rule {
-			element = 'METHOD'
-
-			excludes = [
-			        "*"
-			]
-
-			limit {
-				counter = 'LINE'
-				value = 'TOTALCOUNT'
-				maximum = 200
-			}
-		}
-	}
-}
-
-tasks.register('testCoverage', Test) {
-	group 'verification'
-	description 'Runs the unit tests with coverage'
-
-	dependsOn('test', 'jacocoTestReport', 'jacocoTestCoverageVerification')
-}
-
 sonar {
 	properties {
 		property "sonar.projectKey", "nimohLee_glomo_AY_yMRogb_WNf9--_QUt"
+		property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco.xml"
 	}
 }
 
@@ -111,6 +63,8 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
+
+tasks["sonarqube"].dependsOn(clean, jacocoTestReport)
 
 tasks.named('test') {
 	useJUnitPlatform()
