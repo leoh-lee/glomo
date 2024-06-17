@@ -44,7 +44,7 @@ public class MemberRepositoryTest {
     }
 
     @Test
-    public void 회원가입() throws Exception {
+    void 회원가입() throws Exception {
         // when
         final Member result = memberRepository.save(member);
         // then
@@ -54,7 +54,7 @@ public class MemberRepositoryTest {
     }
 
     @Test
-    public void 회원수정() throws Exception {
+    void 회원수정() throws Exception {
         // given
         final Member savedMember = memberRepository.save(member);
         em.flush();
@@ -76,7 +76,7 @@ public class MemberRepositoryTest {
     }
 
     @Test
-    public void 회원삭제() throws Exception {
+    void 회원삭제() throws Exception {
         // given
         final Member savedMember = memberRepository.save(member);
         em.flush();
