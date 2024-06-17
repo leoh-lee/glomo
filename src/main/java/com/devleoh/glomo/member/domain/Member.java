@@ -46,4 +46,12 @@ public class Member {
     public boolean isSameMemberId(String memberId) {
         return this.memberId.equals(memberId);
     }
+
+    public void changeName(String name) {
+        this.name = name;
+    }
+
+    public void changeMemberId(String memberId) {
+        this.memberId = memberId;
+    }
 }
