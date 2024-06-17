@@ -100,6 +100,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'dev.langchain4j:langchain4j-open-ai:0.30.0'
 	implementation 'dev.langchain4j:langchain4j-easy-rag:0.30.0'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql'
