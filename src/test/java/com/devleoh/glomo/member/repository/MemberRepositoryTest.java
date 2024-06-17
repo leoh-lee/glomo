@@ -3,6 +3,7 @@ package com.devleoh.glomo.member.repository;
 import com.devleoh.glomo.member.domain.Member;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -26,32 +27,35 @@ import static org.assertj.core.api.Assertions.*;
 @DataJpaTest
 public class MemberRepositoryTest {
 
+    public static final String MEMBER_NAME = "memberName";
+    public static final String MEMBER_ID = "memberId";
+
     @Autowired
     private MemberRepository memberRepository;
 
     @PersistenceContext
     private EntityManager em;
 
+    private Member member;
+
+    @BeforeEach
+    void setUp() {
+        member = new Member(MEMBER_NAME, MEMBER_ID,"password",  "email");
+    }
+
     @Test
     public void 회원가입() throws Exception {
-        // given
-        String memberName = "memberName";
-        String memberId = "memberId";
-        Member member = new Member(memberName, memberId,"password",  "email");
         // when
         final Member result = memberRepository.save(member);
         // then
         assertThat(result.getId()).isNotNull();
-        assertThat(result.isSameName(memberName)).isTrue();
-        assertThat(result.isSameMemberId(memberId)).isTrue();
+        assertThat(result.isSameName(MEMBER_NAME)).isTrue();
+        assertThat(result.isSameMemberId(MEMBER_ID)).isTrue();
     }
 
     @Test
     public void 회원수정() throws Exception {
         // given
-        String memberName = "memberName";
-        String memberId = "memberId";
-        Member member = new Member(memberName, memberId,"password",  "email");
         final Member savedMember = memberRepository.save(member);
         em.flush();
         // when
@@ -67,16 +71,13 @@ public class MemberRepositoryTest {
         Member updatedMember = memberRepository.findById(savedMember.getId()).get();
         // then
         assertThat(updatedMember.getId()).isEqualTo(findMember.getId());
-        assertThat(updatedMember.isSameMemberId(changedName));
-        assertThat(updatedMember.isSameName(changedMemberId));
+        assertThat(updatedMember.isSameMemberId(changedMemberId)).isTrue();
+        assertThat(updatedMember.isSameName(changedName)).isTrue();
     }
 
     @Test
     public void 회원삭제() throws Exception {
         // given
-        String memberName = "memberName";
-        String memberId = "memberId";
-        Member member = new Member(memberName, memberId,"password",  "email");
         final Member savedMember = memberRepository.save(member);
         em.flush();
         // when
