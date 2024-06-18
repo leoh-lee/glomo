@@ -18,12 +18,10 @@ jacocoTestReport {
 		html.required = true
 	}
 
-	afterEvaluate {
-		classDirectories.setFrom(files(classDirectories.files.collect {
-			fileTree(dir: it, excludes: [
-			        "**/config/*"
-			])
-		}))
+	doFirst {
+		classDirectories = files(classDirectories.files.collect {
+			fileTree(dir: it, excludes: ["**/config/**"])
+		})
 	}
 }
 
