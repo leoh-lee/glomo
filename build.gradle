@@ -19,10 +19,10 @@ jacocoTestReport {
 	}
 
 	doFirst {
-		def filteredClassDirs = classDirectories.files.collect {
-			fileTree(dir: it, excludes: ["**/config/**"])
-		}
-		classDirectories = files(filteredClassDirs.flatten())
+		def excludes = ["**/config/**"]
+		classDirectories = files(classDirectories.files.collect {
+			fileTree(dir: it, excludes: excludes)
+		})
 	}
 }
 
