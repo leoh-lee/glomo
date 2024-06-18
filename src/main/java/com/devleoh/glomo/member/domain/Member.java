@@ -15,6 +15,7 @@ import lombok.Getter;
  * 2024/06/17        nimoh       최초 생성
  */
 @Entity
+@Getter
 public class Member {
 
     @Getter
