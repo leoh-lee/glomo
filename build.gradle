@@ -12,17 +12,19 @@ jacoco {
 }
 
 jacocoTestReport {
+	dependsOn test
 	reports {
 		xml.required = true
 		html.required = true
 	}
 }
 
-sonarqube {
+sonar {
 	properties {
 		property "sonar.projectKey", "nimohLee_glomo_AY_yMRogb_WNf9--_QUt"
 		property "sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
 		property "sonar.gradle.skipCompile", "true"
+
 	}
 }
 
@@ -70,6 +72,6 @@ tasks.named('jacocoTestReport') {
 	dependsOn 'test'
 }
 
-tasks.named('sonarqube') {
+tasks.named('sonar') {
 	dependsOn 'jacocoTestReport'
 }
