@@ -13,9 +13,17 @@ jacoco {
 
 jacocoTestReport {
 	reports {
-		html.required = false
-		xml.required = true
-		csv.required = false
+		html {
+			enabled false
+		}
+
+		csv {
+			enabled false
+		}
+
+		xml {
+			enabled true
+		}
 
 		html.destination file("$buildDir/jacoco/jacoco.html")
 		xml.destination file("$buildDir/jacoco/jacoco.xml")
