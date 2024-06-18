@@ -25,7 +25,7 @@ import static org.assertj.core.api.Assertions.*;
  */
 
 @DataJpaTest
-public class MemberRepositoryTest {
+class MemberRepositoryTest {
 
     public static final String MEMBER_NAME = "memberName";
     public static final String MEMBER_ID = "memberId";
