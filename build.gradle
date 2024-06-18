@@ -21,7 +21,7 @@ jacocoTestReport {
 	afterEvaluate {
 		classDirectories.setFrom(files(classDirectories.files.collect {
 			fileTree(dir: it, exclude: [
-					"**/config/**"
+					"**/config/*"
 			])
 		}))
 	}
@@ -74,7 +74,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 
 	jacoco {
-		excludes += ["**/config/**"]
+		excludes += ["**/config/*"]
 	}
 }
 
