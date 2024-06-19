@@ -1,4 +1,4 @@
-package com.devleoh.glomo.config.env;
+package com.devleoh.glomo.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;

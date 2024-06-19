@@ -1,7 +1,9 @@
 package com.devleoh.glomo.member.domain;
 
+import com.devleoh.glomo.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * packageName    : com.devleoh.glomo.user.domain
@@ -16,9 +18,9 @@ import lombok.Getter;
  */
 @Entity
 @Getter
-public class Member {
+@NoArgsConstructor
+public class Member extends BaseEntity {
 
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,8 +36,6 @@ public class Member {
 
     @Column(nullable = false)
     private String email;
-
-    public Member() {}
 
     public Member(String name, String memberId, String password, String email) {
         this.name = name;
