@@ -13,67 +13,27 @@ jacoco {
 
 jacocoTestReport {
 	dependsOn test
-	mustRunAfter test
 
 	reports {
 		xml.required = true
-		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
-		csv.required = false
+		html.required = true
 	}
-}
 
-jacocoTestCoverageVerification {
-	mustRunAfter jacocoTestReport
-
-	violationRules {
-		rule {
-			element = 'CLASS'
-
-			limit {
-				counter = 'BRANCH'
-				value = 'COVEREDRATIO'
-				minimum = 0.0
-			}
-
-			limit {
-				counter = 'LINE'
-				value = 'COVEREDRATIO'
-				minimum = 0.00
-			}
-
-			limit {
-				counter = 'METHOD'
-				value = 'COVEREDRATIO'
-				minimum = 0.0
-			}
-		}
-
-		rule {
-			element = 'METHOD'
-
-			excludes = [
-			        "*"
-			]
-
-			limit {
-				counter = 'LINE'
-				value = 'TOTALCOUNT'
-				maximum = 200
-			}
-		}
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree(dir: it,
+					exclude: [
+							'com/devleoh/glomo/config'
+			])
+		}))
 	}
-}
-
-tasks.register('testCoverage', Test) {
-	group 'verification'
-	description 'Runs the unit tests with coverage'
-
-	dependsOn('test', 'jacocoTestReport', 'jacocoTestCoverageVerification')
 }
 
 sonar {
 	properties {
 		property "sonar.projectKey", "nimohLee_glomo_AY_yMRogb_WNf9--_QUt"
+		property "sonar.coverage.exclusions", "**/config/**"
+		property "sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
 	}
 }
 
@@ -96,10 +56,11 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'dev.langchain4j:langchain4j-open-ai:0.30.0'
 	implementation 'dev.langchain4j:langchain4j-easy-rag:0.30.0'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql'
@@ -107,10 +68,23 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
+	finalizedBy jacocoTestReport
 	useJUnitPlatform()
+
+	jacoco {
+		excludes += ["**/config/*"]
+	}
+}
+
+tasks.named('jacocoTestReport') {
+	dependsOn 'test'
+}
+
+tasks.named('sonar') {
+	dependsOn 'jacocoTestReport'
 }
