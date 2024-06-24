@@ -36,3 +36,12 @@ spring:
   config:
     activate:
       on-profile: prd
+---
+spring:
+  config:
+    activate:
+      on-profile: sonar
+  h2:
+    console:
+      enabled: true
+      path: /h2
