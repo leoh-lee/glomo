@@ -26,6 +26,13 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    /**
+     * 멤버 생성
+     * @param member 생성(저장)할 Member Entity
+     * @return 저장된 Member의 ID
+     * @throws MemberException MemberId 혹은 Email이 이미 존재하는 경우 예외 발생
+     */
+    @Transactional
     public long createMember(final Member member) {
         if (memberRepository.existsByMemberId(member.getMemberId())) {
             throw new MemberException(MemberExceptionMessage.DUPLICATE_MEMBER_ID);
@@ -40,6 +47,13 @@ public class MemberService {
         return savedMember.getId();
     }
 
+    /**
+     * Member의 ID를 사용하여 Member 단 건 조회
+     *
+     * @param id 조회할 Member의 ID
+     * @return 조회된 Member
+     * @throws MemberException 해당하는 Member가 없는 경우 예외 발생
+     */
     public Member findById(Long id) {
         return memberRepository.findById(id).orElseThrow(() -> new MemberException(MemberExceptionMessage.MEMBER_NOT_FOUND));
     }
