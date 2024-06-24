@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.NoSuchAlgorithmException;
+
 /**
  * packageName    : com.devleoh.glomo.member.service
  * fileName       : MemberService
@@ -33,7 +35,7 @@ public class MemberService {
      * @throws MemberException MemberId 혹은 Email이 이미 존재하는 경우 예외 발생
      */
     @Transactional
-    public long createMember(final Member member) {
+    public long createMember(final Member member) throws NoSuchAlgorithmException {
         if (memberRepository.existsByMemberId(member.getMemberId())) {
             throw new MemberException(MemberExceptionMessage.DUPLICATE_MEMBER_ID);
         }
@@ -42,6 +44,7 @@ public class MemberService {
             throw new MemberException(MemberExceptionMessage.DUPLICATE_EMAIL);
         }
 
+        member.encryptPassword();
         Member savedMember = memberRepository.save(member);
 
         return savedMember.getId();

@@ -3,6 +3,7 @@ package com.devleoh.glomo.member.service;
 import com.devleoh.glomo.member.domain.Member;
 import com.devleoh.glomo.member.exception.MemberException;
 import com.devleoh.glomo.member.repository.MemberRepository;
+import com.devleoh.glomo.util.SHA256;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.security.NoSuchAlgorithmException;
 
 import static com.devleoh.glomo.member.exception.MemberExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
@@ -30,6 +33,7 @@ import static org.mockito.Mockito.when;
 @Transactional
 public class MemberServiceTest {
 
+    public static final String MEMBER_PASSWORD = "1234";
     @Autowired
     private MemberService memberService;
 
@@ -39,8 +43,8 @@ public class MemberServiceTest {
     private Member member;
 
     @BeforeEach
-    void setUp() {
-        member = new Member("test","test","1234","test@test.com");
+    void setUp() throws NoSuchAlgorithmException {
+        member = new Member("test","test", MEMBER_PASSWORD, "test@test.com");
     }
     @Nested
     class 멤버조회 {
@@ -53,7 +57,7 @@ public class MemberServiceTest {
         }
 
         @Test
-        void 성공() {
+        void 성공() throws NoSuchAlgorithmException {
             //given
             memberService.createMember(member);
             //when
@@ -73,7 +77,7 @@ public class MemberServiceTest {
             //given
             when(memberRepository.existsByMemberId(member.getMemberId())).thenReturn(true);
 
-            Member newMember = new Member("ace","test","1234","ace@ace.com");
+            Member newMember = new Member("ace","test","1234", "ace@ace.com");
             //when
             //then
             assertThatThrownBy(() -> memberService.createMember(newMember)).isInstanceOf(MemberException.class).hasMessageContaining(DUPLICATE_MEMBER_ID.getMessage());
@@ -84,19 +88,21 @@ public class MemberServiceTest {
             //given
             when(memberRepository.existsByEmail(member.getEmail())).thenReturn(true);
 
-            Member newMember = new Member("ace","ace","1234","test@test.com");
+            Member newMember = new Member("ace","ace","1234", "test@test.com");
             //when
             //then
             assertThatThrownBy(() -> memberService.createMember(newMember)).isInstanceOf(MemberException.class).hasMessageContaining(DUPLICATE_EMAIL.getMessage());
         }
 
         @Test
-        void 성공() {
+        void 성공() throws NoSuchAlgorithmException {
             //given
             //when
             long savedMemberId = memberService.createMember(member);
+            Member findMember = memberService.findById(savedMemberId);
             //then
-            assertThat(memberService.findById(savedMemberId)).isEqualTo(member);
+            assertThat(findMember).isEqualTo(member);
+            assertThat(findMember.getPassword()).isEqualTo(SHA256.encrypt(MEMBER_PASSWORD, findMember.getPasswordSalt()));
         }
     }
 
