@@ -49,9 +49,7 @@ public class MemberServiceTest {
             //given
             //when
             //then
-            assertThatThrownBy(() -> {
-                memberService.findById(1L);
-            }).isInstanceOf(MemberException.class).hasMessageContaining(MEMBER_NOT_FOUND.getMessage());
+            assertThatThrownBy(() -> memberService.findById(1L)).isInstanceOf(MemberException.class).hasMessageContaining(MEMBER_NOT_FOUND.getMessage());
         }
 
         @Test
@@ -78,9 +76,7 @@ public class MemberServiceTest {
             Member newMember = new Member("ace","test","1234","ace@ace.com");
             //when
             //then
-            assertThatThrownBy(() -> {
-                memberService.createMember(newMember);
-            }).isInstanceOf(MemberException.class).hasMessageContaining(DUPLICATE_MEMBER_ID.getMessage());
+            assertThatThrownBy(() -> memberService.createMember(newMember)).isInstanceOf(MemberException.class).hasMessageContaining(DUPLICATE_MEMBER_ID.getMessage());
         }
 
         @Test
@@ -91,9 +87,7 @@ public class MemberServiceTest {
             Member newMember = new Member("ace","ace","1234","test@test.com");
             //when
             //then
-            assertThatThrownBy(() -> {
-                memberService.createMember(newMember);
-            }).isInstanceOf(MemberException.class).hasMessageContaining(DUPLICATE_EMAIL.getMessage());
+            assertThatThrownBy(() -> memberService.createMember(newMember)).isInstanceOf(MemberException.class).hasMessageContaining(DUPLICATE_EMAIL.getMessage());
         }
 
         @Test
