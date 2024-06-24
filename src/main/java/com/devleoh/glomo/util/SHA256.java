@@ -34,6 +34,14 @@ public class SHA256 {
         return bytesToHex(salt);
     }
 
+    /**
+     * SHA256와 Salt로 문자열을 암호화하고, 그 결과를 반환
+     *
+     * @param text 암호화할 텍스트
+     * @param salt SHA256에 사용될 Salt 문자열
+     * @return 암호화된 텍스트
+     * @throws NoSuchAlgorithmException
+     */
     public static String encrypt(String text, String salt) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance(SHA_256);
         md.update((text + salt).getBytes());
