@@ -54,6 +54,40 @@ class MemberRepositoryTest {
     }
 
     @Test
+    void 멤버ID로_회원조회() {
+        //when
+        final Member savedMember = memberRepository.save(member);
+        em.flush();
+        final Member result = memberRepository.findByMemberId(savedMember.getMemberId());
+        //then
+        assertThat(result.getId()).isEqualTo(savedMember.getId());
+    }
+
+    @Test
+    void 멤버ID로_회원존재유무확인() {
+        //when
+        final Member savedMember = memberRepository.save(member);
+        em.flush();
+        final boolean result = memberRepository.existsByMemberId(savedMember.getMemberId());
+        final boolean wrongResult = memberRepository.existsByMemberId("WrongMemberId");
+        //then
+        assertThat(result).isTrue();
+        assertThat(wrongResult).isFalse();
+    }
+
+    @Test
+    void 이메일로_회원존재유무확인() {
+        //when
+        final Member savedMember = memberRepository.save(member);
+        em.flush();
+        final boolean result = memberRepository.existsByEmail(savedMember.getEmail());
+        final boolean wrongResult = memberRepository.existsByEmail("WrongEmail");
+        //then
+        assertThat(result).isTrue();
+        assertThat(wrongResult).isFalse();
+    }
+
+    @Test
     void 회원수정() throws Exception {
         // given
         final Member savedMember = memberRepository.save(member);
