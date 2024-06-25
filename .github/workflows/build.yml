@@ -8,6 +8,19 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    container: node:10.18-jessie
+    services:
+      image: postgres
+      env:
+        POSTGRES_PASSWORD: postgres
+      options: >-
+        --health-cmd pg_isready
+        --health-interval 10s
+        --health-timeout 5s
+        --health-retries 5
+      ports:
+        - 5432:5432
+
     steps:
       - uses: actions/checkout@v3
         with:
@@ -17,6 +30,11 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 17
+      - name: Connect to PostgreSQL
+        run: node Client.js
+        env:
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: 5432
       - name: Cache SonarQube packages
         uses: actions/cache@v3
         with:
