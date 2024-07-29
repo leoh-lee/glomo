@@ -8,7 +8,8 @@ plugins {
 
 jacoco {
 	// Jacoco 버전
-	toolVersion = '0.8.8'
+	toolVersion = '0.8.10'
+	reportsDirectory = layout.buildDirectory.dir('jacocoReport')
 }
 
 jacocoTestReport {
@@ -16,6 +17,7 @@ jacocoTestReport {
 
 	reports {
 		xml.required = true
+		csv.required = false
 		html.required = true
 	}
 
@@ -23,17 +25,49 @@ jacocoTestReport {
 		classDirectories.setFrom(files(classDirectories.files.collect {
 			fileTree(dir: it,
 					exclude: [
-							'com/devleoh/glomo/config'
+							'**/config/*',
+							'com/devleoh/glomo/GlomoApplication.*',
+							'com/devleoh/**/*DTO.*',
 			])
 		}))
+	}
+
+	finalizedBy 'jacocoTestCoverageVerification'
+}
+
+jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			enabled = true
+			element = 'CLASS'
+
+			limit {
+				counter = 'LINE'
+				value = 'COVEREDRATIO'
+				minimum = 0.80
+			}
+			limit {
+				counter = 'LINE'
+				value = 'TOTALCOUNT'
+				maximum = 200
+			}
+			limit {
+				counter = 'BRANCH'
+				value = 'COVEREDRATIO'
+				minimum = 0.80
+			}
+			excludes = [
+				"**.config.*",
+				'**.GlomoApplication*',
+				'com.devleoh.**.*DTO.*',
+			]
+		}
 	}
 }
 
 sonar {
 	properties {
 		property "sonar.projectKey", "nimohLee_glomo_AY_yMRogb_WNf9--_QUt"
-		property "sonar.coverage.exclusions", ["**/config/**", "**/BaseEntity*"]
-		property "sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
 	}
 }
 
@@ -63,7 +97,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
-	runtimeOnly 'org.postgresql:postgresql'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	annotationProcessor 'org.projectlombok:lombok'
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
@@ -77,7 +111,10 @@ tasks.named('test') {
 	useJUnitPlatform()
 
 	jacoco {
-		excludes += ["**/config/*"]
+		excludes += ["**/config/*",
+					 'com/devleoh/glomo/GlomoApplication.*',
+					 'com/devleoh/**/*DTO.*'
+		]
 	}
 }
 
