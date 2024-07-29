@@ -35,7 +35,7 @@ public class MemberService {
      * @throws MemberException MemberId 혹은 Email이 이미 존재하는 경우 예외 발생
      */
     @Transactional
-    public long createMember(final Member member) throws NoSuchAlgorithmException {
+    public void createMember(final Member member) throws NoSuchAlgorithmException {
         if (memberRepository.existsByMemberId(member.getMemberId())) {
             throw new MemberException(MemberExceptionMessage.DUPLICATE_MEMBER_ID);
         }
@@ -45,9 +45,7 @@ public class MemberService {
         }
 
         member.encryptPassword();
-        Member savedMember = memberRepository.save(member);
-
-        return savedMember.getId();
+        memberRepository.save(member);
     }
 
     /**

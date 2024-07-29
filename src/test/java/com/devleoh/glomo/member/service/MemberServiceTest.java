@@ -17,6 +17,7 @@ import static com.devleoh.glomo.member.exception.MemberExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -98,15 +99,15 @@ public class MemberServiceTest {
         }
 
         @Test
-        void 성공() throws NoSuchAlgorithmException {
+        void 성공() {
             //given
             when(memberRepository.existsByMemberId(anyString())).thenReturn(false);
             when(memberRepository.existsByEmail(any())).thenReturn(false);
             when(memberRepository.save(any())).thenReturn(member);
             //when
-//            memberService.createMember(member);
             //then
-//            verify(memberService);
+            assertThatNoException().isThrownBy(()->memberService.createMember(member));
+
         }
     }
 
