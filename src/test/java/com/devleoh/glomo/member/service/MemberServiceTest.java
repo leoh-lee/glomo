@@ -1,6 +1,6 @@
 package com.devleoh.glomo.member.service;
 
-import com.devleoh.glomo.member.domain.Member;
+import com.devleoh.glomo.member.entity.Member;
 import com.devleoh.glomo.member.exception.MemberException;
 import com.devleoh.glomo.member.repository.MemberRepository;
 import org.junit.jupiter.api.BeforeEach;

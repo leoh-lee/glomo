@@ -1,4 +1,4 @@
-package com.devleoh.glomo.member.domain;
+package com.devleoh.glomo.member.entity;
 
 import com.devleoh.glomo.base.BaseEntity;
 import com.devleoh.glomo.util.SHA256;
