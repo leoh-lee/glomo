@@ -2,7 +2,7 @@ package com.devleoh.glomo.watchlist.entity;
 
 import com.devleoh.glomo.base.BaseEntity;
 import com.devleoh.glomo.member.entity.Member;
-import com.devleoh.glomo.product.entity.Product;
+import com.devleoh.glomo.asset.entity.Asset;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,11 +28,11 @@ public class WatchList extends BaseEntity {
     @Column(name="WATCH_LIST_ID")
     private Long watchListId;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="MEMBER_ID")
     private Member member;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    private Product product;
+    @JoinColumn(name="PRODUCT_ID")
+    private Asset asset;
 }

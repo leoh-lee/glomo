@@ -1,4 +1,4 @@
-package com.devleoh.glomo.product.entity;
+package com.devleoh.glomo.asset.entity;
 
 import com.devleoh.glomo.base.BaseEntity;
 import jakarta.persistence.*;
@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * packageName    : com.devleoh.glomo.ProductCategory.entity
- * fileName       : ProductCategory
+ * packageName    : com.devleoh.glomo.product.entity
+ * fileName       : TradingMarket
  * author         : nimoh
  * date           : 2024/08/01
  * description    :
@@ -19,12 +19,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor
-public class ProductCategory extends BaseEntity {
+public class TradingMarket extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="PRODUCT_CATEOGRY_ID")
-    private Long productCategoryId;
+    @Column(name="TRADING_MARKET_ID")
+    private Long tradingMarketId;
 
     @Column(nullable = false)
     private String name;

@@ -1,4 +1,4 @@
-package com.devleoh.glomo.product.entity;
+package com.devleoh.glomo.asset.entity;
 
 import com.devleoh.glomo.base.BaseEntity;
 import jakarta.persistence.*;
@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * packageName    : com.devleoh.glomo.product.entity
- * fileName       : Product
+ * packageName    : com.devleoh.glomo.ProductCategory.entity
+ * fileName       : ProductCategory
  * author         : nimoh
  * date           : 2024/08/01
  * description    :
@@ -19,21 +19,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Product extends BaseEntity {
+public class AssetCategory extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PRODUCT_ID")
-    private Long productId;
+    @Column(name="ASSET_CATEOGRY_ID")
+    private Long assetCategoryId;
 
     @Column(nullable = false)
-    private String code;                        // 상품 코드
-
-    private int faceValue;                      // 액면가
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private ProductCategory productCategory;    // 상품 분류
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private TradingMarket tradingMarket;        // 시장
+    private String name;
 }
