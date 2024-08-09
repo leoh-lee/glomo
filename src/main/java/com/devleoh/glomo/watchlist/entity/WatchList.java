@@ -25,7 +25,8 @@ public class WatchList extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name="WATCH_LIST_ID")
+    private Long watchListId;
 
     @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)

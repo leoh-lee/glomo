@@ -23,7 +23,8 @@ public class Product extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "PRODUCT_ID")
+    private Long productId;
 
     @Column(nullable = false)
     private String code;                        // 상품 코드

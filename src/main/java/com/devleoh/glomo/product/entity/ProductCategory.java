@@ -23,7 +23,8 @@ public class ProductCategory extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name="PRODUCT_CATEOGRY_ID")
+    private Long productCategoryId;
 
     @Column(nullable = false)
     private String name;
