@@ -67,8 +67,8 @@ public class MemberServiceTest {
 
             Member findMember = memberService.findById(1L);
             //then
-            assertThat(findMember.getId()).isEqualTo(member.getId());
             assertThat(findMember.getMemberId()).isEqualTo(member.getMemberId());
+            assertThat(findMember.getLoginId()).isEqualTo(member.getLoginId());
             assertThat(findMember.getPassword()).isEqualTo(member.getPassword());
             assertThat(findMember.getEmail()).isEqualTo(member.getEmail());
         }
@@ -79,7 +79,7 @@ public class MemberServiceTest {
         @Test
         void 실패_이미_존재하는_아이디() {
             //given
-            when(memberRepository.existsByMemberId(member.getMemberId())).thenReturn(true);
+            when(memberRepository.existsByLoginId(member.getLoginId())).thenReturn(true);
 
             Member newMember = new Member("ace","test","1234", "ace@ace.com");
             //when
@@ -101,7 +101,7 @@ public class MemberServiceTest {
         @Test
         void 성공() {
             //given
-            when(memberRepository.existsByMemberId(anyString())).thenReturn(false);
+            when(memberRepository.existsByLoginId(anyString())).thenReturn(false);
             when(memberRepository.existsByEmail(any())).thenReturn(false);
             when(memberRepository.save(any())).thenReturn(member);
             //when

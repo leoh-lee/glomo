@@ -30,7 +30,7 @@ import static org.assertj.core.api.Assertions.*;
 class MemberRepositoryTest {
 
     public static final String MEMBER_NAME = "memberName";
-    public static final String MEMBER_ID = "memberId";
+    public static final String MEMBER_LOGIN_ID = "memberId";
 
     @Autowired
     private MemberRepository memberRepository;
@@ -43,7 +43,7 @@ class MemberRepositoryTest {
     @BeforeEach
     void setUp() throws NoSuchAlgorithmException {
         String salt = SHA256.createSalt();
-        member = new Member(MEMBER_NAME, MEMBER_ID, "password", "email");
+        member = new Member(MEMBER_NAME, MEMBER_LOGIN_ID, "password", "email");
     }
 
     @Test
@@ -51,9 +51,9 @@ class MemberRepositoryTest {
         // when
         final Member result = memberRepository.save(member);
         // then
-        assertThat(result.getId()).isNotNull();
+        assertThat(result.getMemberId()).isNotNull();
         assertThat(result.isSameName(MEMBER_NAME)).isTrue();
-        assertThat(result.isSameMemberId(MEMBER_ID)).isTrue();
+        assertThat(result.isSameMemberId(MEMBER_LOGIN_ID)).isTrue();
     }
 
     @Test
@@ -61,9 +61,9 @@ class MemberRepositoryTest {
         //when
         final Member savedMember = memberRepository.save(member);
         em.flush();
-        final Member result = memberRepository.findByMemberId(savedMember.getMemberId());
+        final Member result = memberRepository.findByLoginId(savedMember.getLoginId());
         //then
-        assertThat(result.getId()).isEqualTo(savedMember.getId());
+        assertThat(result.getMemberId()).isEqualTo(savedMember.getMemberId());
     }
 
     @Test
@@ -71,8 +71,8 @@ class MemberRepositoryTest {
         //when
         final Member savedMember = memberRepository.save(member);
         em.flush();
-        final boolean result = memberRepository.existsByMemberId(savedMember.getMemberId());
-        final boolean wrongResult = memberRepository.existsByMemberId("WrongMemberId");
+        final boolean result = memberRepository.existsByLoginId(savedMember.getLoginId());
+        final boolean wrongResult = memberRepository.existsByLoginId("WrongMemberId");
         //then
         assertThat(result).isTrue();
         assertThat(wrongResult).isFalse();
@@ -96,7 +96,7 @@ class MemberRepositoryTest {
         final Member savedMember = memberRepository.save(member);
         em.flush();
         // when
-        Member findMember = memberRepository.findById(savedMember.getId()).get();
+        Member findMember = memberRepository.findById(savedMember.getMemberId()).get();
         String changedName = "userName2";
         String changedMemberId = "userId2";
 
@@ -105,9 +105,9 @@ class MemberRepositoryTest {
 
         em.flush();
 
-        Member updatedMember = memberRepository.findById(savedMember.getId()).get();
+        Member updatedMember = memberRepository.findById(savedMember.getMemberId()).get();
         // then
-        assertThat(updatedMember.getId()).isEqualTo(findMember.getId());
+        assertThat(updatedMember.getMemberId()).isEqualTo(findMember.getMemberId());
         assertThat(updatedMember.isSameMemberId(changedMemberId)).isTrue();
         assertThat(updatedMember.isSameName(changedName)).isTrue();
     }
@@ -121,7 +121,7 @@ class MemberRepositoryTest {
         memberRepository.delete(savedMember);
         em.flush();
 
-        Optional<Member> findMember = memberRepository.findById(savedMember.getId());
+        Optional<Member> findMember = memberRepository.findById(savedMember.getMemberId());
         // then
         assertThat(findMember).isEmpty();
     }

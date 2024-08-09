@@ -15,9 +15,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * 2024/06/17        nimoh       최초 생성
  */
 public interface MemberRepository extends JpaRepository<Member, Long> {
-    Member findByMemberId(String memberId);
+    Member findByLoginId(String loginId);
 
-    boolean existsByMemberId(String memberId);
+    boolean existsByLoginId(String loginId);
 
     boolean existsByEmail(String email);
 }

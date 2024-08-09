@@ -36,7 +36,7 @@ public class MemberService {
      */
     @Transactional
     public void createMember(final Member member) throws NoSuchAlgorithmException {
-        if (memberRepository.existsByMemberId(member.getMemberId())) {
+        if (memberRepository.existsByLoginId(member.getLoginId())) {
             throw new MemberException(MemberExceptionMessage.DUPLICATE_MEMBER_ID);
         }
 
