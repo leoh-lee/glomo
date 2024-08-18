@@ -1,4 +1,4 @@
-package com.devleoh.glomo.base;
+package com.devleoh.glomo.base.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -27,9 +27,10 @@ import java.time.LocalDateTime;
 public class BaseEntity {
 
     @CreatedDate
-    @Column(updatable = false)
+    @Column(name = "CREATED_AT", updatable = false)
     private LocalDateTime createdAT;
 
     @LastModifiedDate
+    @Column(name = "UPDATED_AT")
     private LocalDateTime updatedAT;
 }
