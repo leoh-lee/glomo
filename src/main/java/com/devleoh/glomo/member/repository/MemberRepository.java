@@ -1,6 +1,6 @@
 package com.devleoh.glomo.member.repository;
 
-import com.devleoh.glomo.member.entity.Member;
+import com.devleoh.glomo.member.model.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

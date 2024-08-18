@@ -1,15 +1,13 @@
-package com.devleoh.glomo.watchlist.entity;
+package com.devleoh.glomo.asset.model;
 
 import com.devleoh.glomo.base.BaseEntity;
-import com.devleoh.glomo.member.entity.Member;
-import com.devleoh.glomo.asset.entity.Asset;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * packageName    : com.devleoh.glomo.WatchList.entity
- * fileName       : WatchList
+ * packageName    : com.devleoh.glomo.product.entity
+ * fileName       : TradingMarket
  * author         : nimoh
  * date           : 2024/08/01
  * description    :
@@ -21,18 +19,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor
-public class WatchList extends BaseEntity {
+public class TradingMarket extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="WATCH_LIST_ID")
-    private Long watchListId;
+    @Column(name="TRADING_MARKET_ID")
+    private Long tradingMarketId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="MEMBER_ID")
-    private Member member;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="PRODUCT_ID")
-    private Asset asset;
+    @Column(nullable = false)
+    private String name;
 }

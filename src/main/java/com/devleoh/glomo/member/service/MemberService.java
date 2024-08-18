@@ -1,6 +1,6 @@
 package com.devleoh.glomo.member.service;
 
-import com.devleoh.glomo.member.entity.Member;
+import com.devleoh.glomo.member.model.Member;
 import com.devleoh.glomo.member.exception.MemberException;
 import com.devleoh.glomo.member.exception.MemberExceptionMessage;
 import com.devleoh.glomo.member.repository.MemberRepository;

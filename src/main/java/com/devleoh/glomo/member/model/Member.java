@@ -1,4 +1,4 @@
-package com.devleoh.glomo.member.entity;
+package com.devleoh.glomo.member.model;
 
 import com.devleoh.glomo.base.BaseEntity;
 import com.devleoh.glomo.util.SHA256;

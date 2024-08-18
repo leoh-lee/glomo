@@ -1,4 +1,4 @@
-package com.devleoh.glomo.asset.entity;
+package com.devleoh.glomo.asset.model;
 
 import com.devleoh.glomo.base.BaseEntity;
 import jakarta.persistence.*;

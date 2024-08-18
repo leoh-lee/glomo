@@ -1,6 +1,5 @@
-package com.devleoh.glomo.member.domain;
+package com.devleoh.glomo.member.model;
 
-import com.devleoh.glomo.member.entity.Member;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

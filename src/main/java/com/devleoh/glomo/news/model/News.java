@@ -1,4 +1,4 @@
-package com.devleoh.glomo.news.entity;
+package com.devleoh.glomo.news.model;
 
 import com.devleoh.glomo.base.BaseEntity;
 import jakarta.persistence.*;
