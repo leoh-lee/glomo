@@ -61,7 +61,7 @@ jacocoTestCoverageVerification {
 				"**.config.*",
 				'**.GlomoApplication*',
 				'com.devleoh.**.*DTO.*',
-				'com/devleoh/**/model/*'
+				'com.devleoh.**.model.*'
 			]
 		}
 	}
