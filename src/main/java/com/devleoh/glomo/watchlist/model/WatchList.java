@@ -25,16 +25,17 @@ public class WatchList extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="WATCH_LIST_ID")
+    @Column(name = "WATCH_LIST_ID")
     private Long watchListId;
 
+    @Column(name = "WATCH_LIST_NAME")
     private String watchListName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="MEMBER_ID")
+    @JoinColumn(name = "MEMBER_ID", nullable = false)
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="PRODUCT_ID")
+    @JoinColumn(name = "ASSET_ID", nullable = false)
     private Asset asset;
 }

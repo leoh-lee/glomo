@@ -25,10 +25,11 @@ public class NewsCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="NEWS_CATRGORY_ID")
+    @Column(name = "NEWS_CATERGORY_ID")
     private long newsCategoryId;
 
-    private String categoryName;
+    @Column(name = "NEWS_CATEGORY_NAME")
+    private String newsCategoryName;
 
     @OneToMany(mappedBy = "newsCategory")
     private List<News> newsList = new ArrayList<>();

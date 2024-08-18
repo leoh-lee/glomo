@@ -26,16 +26,20 @@ public class Asset extends BaseEntity {
     @Column(name = "ASSET_ID")
     private Long assetId;
 
-    @Column(nullable = false)
-    private String code;                        // 상품 코드
+    @Column(name = "ASSET_CODE", nullable = false)
+    private String assetCode;                        // 상품 코드
 
+    @Column(name = "ASSET_NAME", nullable = false)
+    private String assetName;                   // 상품 명
+
+    @Column(name = "FACE_VALUE")
     private int faceValue;                      // 액면가
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="ASSET_CATEGORY_ID")
-    private AssetCategory assetCategory;    // 상품 분류
+    @JoinColumn(name = "ASSET_CATEGORY_ID")
+    private AssetCategory assetCategory;        // 상품 분류
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="TRADING_MARKET_ID")
-    private TradingMarket tradingMarket;        // 시장
+    @JoinColumn(name = "TRADING_MARKET_ID")
+    private TradingMarket tradingMarket;        // 거래 시장
 }

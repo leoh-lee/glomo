@@ -25,34 +25,34 @@ import java.security.NoSuchAlgorithmException;
 public class Member extends BaseEntity {
 
     @Id
-    @Column(name="MEMBER_ID")
+    @Column(name = "MEMBER_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberId;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(name = "MEMBER_NAME", nullable = false)
+    private String memberName;
 
-    @Column(nullable = false)
+    @Column(name = "LOGIN_ID", nullable = false)
     private String loginId;
 
-    @Column(nullable = false)
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(name = "PASSWORD_SALT", nullable = false)
     private String passwordSalt = "";
 
-    @Column(nullable = false)
+    @Column(name = "EMAIL", nullable = false)
     private String email;
 
-    public Member(String name, String loginId, String password, String email) {
-        this.name = name;
+    public Member(String memberName, String loginId, String password, String email) {
+        this.memberName = memberName;
         this.loginId = loginId;
         this.password = password;
         this.email = email;
     }
 
     public boolean isSameName(final String name) {
-        return this.name.equals(name);
+        return this.memberName.equals(name);
     }
 
     public boolean isSameMemberId(final String memberId) {
@@ -60,7 +60,7 @@ public class Member extends BaseEntity {
     }
 
     public void changeName(final String name) {
-        this.name = name;
+        this.memberName = name;
     }
 
     public void changeMemberId(final String memberId) {

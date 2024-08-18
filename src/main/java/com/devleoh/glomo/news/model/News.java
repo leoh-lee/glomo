@@ -23,17 +23,20 @@ public class News extends BaseEntity {
 
     @Id
     @GeneratedValue
-    @Column(name="NEWS_ID")
+    @Column(name = "NEWS_ID")
     private long newsId;
 
-    private String title;
+    @Column(name = "NEWS_TITLE", nullable = false)
+    private String newTitle;
 
-    private String content;
+    @Column(name = "NEWS_CONTENT", nullable = false)
+    private String newContent;
 
-    private String author;
+    @Column(name = "NEWS_AUTHOR")
+    private String newsAuthor;
 
     @ManyToOne
-    @JoinColumn(name="NEWS_CATEGORY")
+    @JoinColumn(name="NEWS_CATEGORY", nullable = false)
     private NewsCategory newsCategory;
 
     public void changeNewsCategory(NewsCategory newsCategory) {

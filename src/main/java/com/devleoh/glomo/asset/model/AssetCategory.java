@@ -23,9 +23,9 @@ public class AssetCategory extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="ASSET_CATEOGRY_ID")
+    @Column(name = "ASSET_CATEOGRY_ID")
     private Long assetCategoryId;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(name = "ASSET_CATEGORY_NAME", nullable = false)
+    private String assetCategoryName;
 }

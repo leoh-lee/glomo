@@ -23,9 +23,9 @@ public class TradingMarket extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="TRADING_MARKET_ID")
+    @Column(name = "TRADING_MARKET_ID")
     private Long tradingMarketId;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(name = "TRADING_MARKET_NAME", nullable = false)
+    private String tradingMarketName;
 }
