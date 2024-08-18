@@ -26,7 +26,7 @@ class SHA256Test {
 
         assertThat(salt).isNotEmpty();
         System.out.println(salt);
-        assertThat(salt.length()).isEqualTo(40);
+        assertThat(salt).hasSize(40);
     }
 
     @Test
@@ -35,8 +35,7 @@ class SHA256Test {
         String salt = SHA256.createSalt();
         String encryptedText = SHA256.encrypt(text, salt);
 
-        assertThat(encryptedText).isNotEmpty();
-        assertThat(encryptedText).isNotEqualTo(text);
+        assertThat(encryptedText).isNotEmpty().isNotEqualTo(text);
     }
 
 }

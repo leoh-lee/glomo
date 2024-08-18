@@ -20,6 +20,8 @@ public class SHA256 {
     public static final String SHA_256 = "SHA-256";
     public static final String BYTES_TO_HEX_FORMAT = "%02x";
 
+    private SHA256() {}
+
     /**
      * SHA256 암호화에 사용할 40자 Salt Key 생성
      *
