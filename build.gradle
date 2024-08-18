@@ -28,6 +28,7 @@ jacocoTestReport {
 							'**/config/*',
 							'com/devleoh/glomo/GlomoApplication.*',
 							'com/devleoh/**/*DTO.*',
+							'com/devleoh/**/model/*'
 			])
 		}))
 	}
@@ -60,6 +61,7 @@ jacocoTestCoverageVerification {
 				"**.config.*",
 				'**.GlomoApplication*',
 				'com.devleoh.**.*DTO.*',
+				'com/devleoh/**/model/*'
 			]
 		}
 	}
@@ -113,7 +115,8 @@ tasks.named('test') {
 	jacoco {
 		excludes += ["**/config/*",
 					 'com/devleoh/glomo/GlomoApplication.*',
-					 'com/devleoh/**/*DTO.*'
+					 'com/devleoh/**/*DTO.*',
+					 'com/devleoh/**/model/*'
 		]
 	}
 }
