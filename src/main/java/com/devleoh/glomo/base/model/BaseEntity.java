@@ -1,4 +1,4 @@
-package com.devleoh.glomo.base;
+package com.devleoh.glomo.base.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

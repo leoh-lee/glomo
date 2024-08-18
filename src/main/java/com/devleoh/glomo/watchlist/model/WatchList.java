@@ -1,6 +1,6 @@
 package com.devleoh.glomo.watchlist.model;
 
-import com.devleoh.glomo.base.BaseEntity;
+import com.devleoh.glomo.base.model.BaseEntity;
 import com.devleoh.glomo.member.model.Member;
 import com.devleoh.glomo.asset.model.Asset;
 import jakarta.persistence.*;

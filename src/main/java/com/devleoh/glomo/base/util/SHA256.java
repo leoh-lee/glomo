@@ -1,4 +1,4 @@
-package com.devleoh.glomo.util;
+package com.devleoh.glomo.base.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

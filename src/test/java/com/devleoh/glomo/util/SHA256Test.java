@@ -1,7 +1,6 @@
 package com.devleoh.glomo.util;
 
-import org.apache.tika.utils.StringUtils;
-import org.assertj.core.api.Assertions;
+import com.devleoh.glomo.base.util.SHA256;
 import org.junit.jupiter.api.Test;
 
 import java.security.NoSuchAlgorithmException;

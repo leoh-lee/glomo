@@ -1,6 +1,6 @@
 package com.devleoh.glomo.asset.model;
 
-import com.devleoh.glomo.base.BaseEntity;
+import com.devleoh.glomo.base.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

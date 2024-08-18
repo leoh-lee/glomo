@@ -1,7 +1,7 @@
 package com.devleoh.glomo.member.model;
 
-import com.devleoh.glomo.base.BaseEntity;
-import com.devleoh.glomo.util.SHA256;
+import com.devleoh.glomo.base.model.BaseEntity;
+import com.devleoh.glomo.base.util.SHA256;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

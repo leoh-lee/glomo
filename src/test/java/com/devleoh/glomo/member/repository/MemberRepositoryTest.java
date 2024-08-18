@@ -1,7 +1,7 @@
 package com.devleoh.glomo.member.repository;
 
 import com.devleoh.glomo.member.model.Member;
-import com.devleoh.glomo.util.SHA256;
+import com.devleoh.glomo.base.util.SHA256;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.BeforeEach;
