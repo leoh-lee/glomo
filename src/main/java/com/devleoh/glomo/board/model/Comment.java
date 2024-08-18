@@ -3,8 +3,9 @@ package com.devleoh.glomo.board.model;
 import com.devleoh.glomo.member.model.Member;
 import com.devleoh.glomo.base.model.BaseEntity;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,9 +21,9 @@ import java.util.Set;
  * -----------------------------------------------------------
  * 2024/08/18        nimoh       최초 생성
  */
-@Getter
-@RequiredArgsConstructor
 @Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Comment extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

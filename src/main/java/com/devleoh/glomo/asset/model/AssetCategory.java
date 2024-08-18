@@ -2,6 +2,7 @@ package com.devleoh.glomo.asset.model;
 
 import com.devleoh.glomo.base.model.BaseEntity;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
  */
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class AssetCategory extends BaseEntity {
 
     @Id

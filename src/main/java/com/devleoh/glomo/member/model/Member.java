@@ -3,6 +3,7 @@ package com.devleoh.glomo.member.model;
 import com.devleoh.glomo.base.model.BaseEntity;
 import com.devleoh.glomo.base.util.SHA256;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -21,7 +22,7 @@ import java.security.NoSuchAlgorithmException;
  */
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends BaseEntity {
 
     @Id

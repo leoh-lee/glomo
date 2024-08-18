@@ -4,6 +4,7 @@ import com.devleoh.glomo.base.model.BaseEntity;
 import com.devleoh.glomo.member.model.Member;
 import com.devleoh.glomo.asset.model.Asset;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
  */
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class WatchList extends BaseEntity {
 
     @Id

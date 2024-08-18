@@ -3,6 +3,7 @@ package com.devleoh.glomo.board.model;
 import com.devleoh.glomo.base.model.BaseEntity;
 import com.devleoh.glomo.member.model.Member;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -22,8 +23,7 @@ import java.util.Set;
  */
 @Entity
 @Getter
-@NoArgsConstructor
-public class Post extends BaseEntity {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)public class Post extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "POST_ID")
